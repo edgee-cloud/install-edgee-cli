@@ -8,7 +8,8 @@ runs:
     - name: Install Edgee
       run: |
         curl https://install.edgee.cloud | sh
-        echo "$PWD/edgee" >> $GITHUB_PATH
+        mv edgee /usr/local/bin/
+        echo "added edgee to path"
       shell: bash
 
     - name: Verify Edgee installation
