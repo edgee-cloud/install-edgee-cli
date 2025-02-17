@@ -1,0 +1,16 @@
+name: "Install Edgee"
+description: "Install edgee from www.github.com/edgee-cloud/edgee"
+author: "edgee-cloud"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Edgee
+      run: |
+        curl https://install.edgee.cloud | sh
+        echo "$PWD/edgee" >> $GITHUB_PATH
+      shell: bash
+
+    - name: Verify Edgee installation
+      run: edgee --version
+      shell: bash

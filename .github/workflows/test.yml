@@ -1,0 +1,23 @@
+name: "Test Setup Edgee Action"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Test Setup Edgee Action
+        uses: ./
+        with:
+          branch: "main"
+
+      - name: Verify Edgee Installation
+        run: edgee --version
