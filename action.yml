@@ -2,14 +2,41 @@ name: "Install Edgee's CLI"
 description: "Install edgee from www.github.com/edgee-cloud/edgee"
 author: "edgee-cloud"
 
+inputs:
+  build:
+    description: "Build Edgee from source instead of download"
+    required: false
+    default: "false"
+
 runs:
   using: "composite"
   steps:
+    - name: Install dependencies
+      if: inputs.build == 'true'
+      run: |
+        sudo apt-get update
+      shell: bash
+
+    - name: Install Rust toolchain
+      if: inputs.build == 'true'
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Clone and Build Edgee
+      if: inputs.build == 'true'
+      run: |
+        git clone https://github.com/edgee-cloud/edgee.git
+        cd edgee
+        cargo build
+        mv ./target/debug/edgee /usr/local/bin/
+        echo "Edgee built and added to path"
+      shell: bash
+
     - name: Install Edgee
+      if: inputs.build == 'false'
       run: |
         curl https://install.edgee.cloud | sh
         mv edgee /usr/local/bin/
-        echo "added edgee to path"
+        echo "Edgee downloaded and added to path"
       shell: bash
 
     - name: Verify Edgee installation
