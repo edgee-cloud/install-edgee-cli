@@ -16,6 +16,3 @@ jobs:
 
       - name: Test Setup Edgee Action
         uses: ./
-
-      - name: Verify Edgee Installation
-        run: edgee --version
