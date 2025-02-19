@@ -22,7 +22,8 @@ runs:
       run: |
         git clone https://github.com/edgee-cloud/edgee.git
         cd edgee
-        make
+        make dev.setup
+        cargo build
         mv edgee /usr/local/bin/
         echo "Edgee built and added to path"
       shell: bash
