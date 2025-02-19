@@ -32,7 +32,7 @@ runs:
         cd edgee
         cargo build
         mv ./target/debug/edgee /usr/local/bin/
-        echo "Edgee built and added to path"
+        echo "Edgee built and added to path"  >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Install Edgee
@@ -40,7 +40,7 @@ runs:
       run: |
         curl https://install.edgee.cloud | sh
         mv edgee /usr/local/bin/
-        echo "Edgee downloaded and added to path"
+        echo "Edgee downloaded and added to path"  >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Verify Edgee installation
