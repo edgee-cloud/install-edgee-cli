@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  test-action:
+  test-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,7 +17,4 @@ jobs:
       - name: Test Setup Edgee Action
         uses: ./
         with:
-          branch: "main"
-
-      - name: Verify Edgee Installation
-        run: edgee --version
+          build: "true"
