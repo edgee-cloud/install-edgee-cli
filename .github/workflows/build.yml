@@ -17,4 +17,4 @@ jobs:
       - name: Test Setup Edgee Action
         uses: ./
         with:
-          build: "true"
+          build: true
