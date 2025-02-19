@@ -19,11 +19,7 @@ runs:
 
     - name: Install Rust toolchain
       if: inputs.build == 'true'
-      uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-        override: true
-        components: cargo
+      uses: dtolnay/rust-toolchain@stable
 
     - name: Clone and Build Edgee
       if: inputs.build == 'true'
