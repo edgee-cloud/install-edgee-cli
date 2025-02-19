@@ -17,12 +17,19 @@ runs:
         sudo apt-get update
       shell: bash
 
+    - name: Install Rust toolchain
+      if: inputs.build == 'true'
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+        components: cargo
+
     - name: Clone and Build Edgee
       if: inputs.build == 'true'
       run: |
         git clone https://github.com/edgee-cloud/edgee.git
         cd edgee
-        make dev.setup
         cargo build
         mv edgee /usr/local/bin/
         echo "Edgee built and added to path"
